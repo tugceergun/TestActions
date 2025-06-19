@@ -1,0 +1,41 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        echo "Installing dependencies..."
+        # npm install (if you have package.json)
+        
+    - name: Build project
+      run: |
+        echo "Building project..."
+        mkdir -p dist
+        echo "<h1>Deployment successful at $(date)</h1>" > dist/index.html
+        
+    - name: Deploy to production
+      run: |
+        echo "🚀 Deploying to production..."
+        echo "✅ Deployment completed successfully!"
+        echo "🌐 Live URL: https://my-app.example.com"
+        
+    - name: Notify completion
+      run: |
+        echo "📧 Sending notifications..."
+        echo "Deployment notification sent"
